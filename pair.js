@@ -3,14 +3,8 @@ const fs = require('fs');
 const { exec } = require("child_process");
 let router = express.Router()
 const pino = require("pino");
-const {
-    default: makeWASocket,
-    useMultiFileAuthState,
-    delay,
-    makeCacheableSignalKeyStore,
-    Browsers,
-    jidNormalizedUser
-} = require("baileys");
+const { default: makeWASocket, useMultiFileAuthState, delay, Browsers, makeCacheableSignalKeyStore, getAggregateVotesInPollMessage, DisconnectReason, WA_DEFAULT_EPHEMERAL, jidNormalizedUser, proto, getDevice, generateWAMessageFromContent, fetchLatestBaileysVersion, makeInMemoryStore, getContentType, generateForwardMessageContent, downloadContentFromMessage, jidDecode } = require('@whiskeysockets/baileys')
+
 const { upload } = require('./mega');
 
 function removeFile(FilePath) {
