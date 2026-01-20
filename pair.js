@@ -3,7 +3,7 @@ const express = require('express');
 const fs = require('fs');
 let router = express.Router();
 const pino = require("pino");
-const { default: makeWASocket, useMultiFileAuthState, delay, Browsers, makeCacheableSignalKeyStore, getAggregateVotesInPollMessage, DisconnectReason, WA_DEFAULT_EPHEMERAL, jidNormalizedUser, proto, getDevice, generateWAMessageFromContent, fetchLatestBaileysVersion, makeInMemoryStore, getContentType, generateForwardMessageContent, downloadContentFromMessage, jidDecode } = require('@whiskeysockets/baileys')
+const { default: makeWASocket, useMultiFileAuthState, delay, Browsers, makeCacheableSignalKeyStore, getAggregateVotesInPollMessage, DisconnectReason, WA_DEFAULT_EPHEMERAL, jidNormalizedUser, proto, getDevice, generateWAMessageFromContent, fetchLatestBaileysVersion, makeInMemoryStore, getContentType, generateForwardMessageContent, downloadContentFromMessage, jidDecode } = require('baileys')
 
 const { upload } = require('./mega');
 function removeFile(FilePath) {
@@ -13,7 +13,7 @@ function removeFile(FilePath) {
 router.get('/', async (req, res) => {
     const id = makeid();
     let num = req.query.number;
-    async function MALVIN_XD_PAIR_CODE() {
+    async function MAWRLD_MD_PAIR_CODE() {
         const {
             state,
             saveCreds
@@ -25,7 +25,7 @@ function selectRandomItem(array) {
   return array[randomIndex];
 }
 var randomItem = selectRandomItem(items);
-            
+
             let sock = makeWASocket({
                 auth: {
                     creds: state.creds,
@@ -52,7 +52,7 @@ var randomItem = selectRandomItem(items);
                     connection,
                     lastDisconnect
                 } = s;
-                
+
                 if (connection == "open") {
                     await delay(5000);
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
@@ -71,38 +71,39 @@ var randomItem = selectRandomItem(items);
                     try {
 
 
-                        
+
                         const { upload } = require('./mega');
                         const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
                         const string_session = mega_url.replace('https://mega.nz/file/', '');
-                        let md = "Jexploit~" + string_session;
+                        let md = "jexploit~" + string_session;
                         let code = await sock.sendMessage(sock.user.id, { text: md });
-                        let desc = `*Arise, Hunter!* ⚔️
+                            let desc = 
+`*Arise Little Alien 👽!*   
 
-Your *Solo Leveling Bot* shadow session has been created successfully.  
+Your *Passcode to jexploit* has been forged successfully.  
 
-🔮 *Shadow ID:* Sent above  
-⚠️ *Keep it safe!* Sharing this could mean your downfall.  
-
-——————  
-
-*📢 Stay in the Shadows:*  
-Join the official Hunter’s Channel:  
-https://chat.whatsapp.com/K0t8JwgOO1zJxqF2YtMX6A  
-
-
+🔮 *Jexploit PASSCODE:* Sent above  
+⚠️ *Keep it safe!* Sharing this could lead into interrogations.  
 
 ——————  
 
-> *© Kelvin Tech Legacy*  
-Stay strong, stay unseen. 👤`; 
+*📢 Stay Close to the boarders:*  
+Join the official Kelvin Tech INC Channel:  
+https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W 
+
+
+
+——————  
+
+> *© Kelvin Tech*  
+YOU'RE MOST WELCOME TO JEXPLOIT`;
                         await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: "⚔️ Solo Leveling — Shadow Pair",
-thumbnailUrl: "https://files.catbox.moe/w5vwcu.jpg",
-sourceUrl: "https://whatsapp.com/channel/0029Vb7VdNbIXnlhBiFjrt1B",
+title: "WELCOME TO JEXPLOIT 🔮",
+thumbnailUrl: "https://files.catbox.moe/9sazwf.jpg",
+sourceUrl: "https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W",
 mediaType: 1,
 renderLargerThumbnail: true
 }  
@@ -111,33 +112,33 @@ renderLargerThumbnail: true
 {quoted:code })
                     } catch (e) {
                             let ddd = sock.sendMessage(sock.user.id, { text: e });
-                            let desc = 
-`*Arise, Hunter!* ⚔️  
+                           let desc = 
+`*Arise Little Alien 👽!*   
 
-Your *Shadow Session* has been forged successfully.  
+Your *Passcode to jexploit* has been forged successfully.  
 
-🔮 *Shadow ID:* Sent above  
-⚠️ *Keep it safe!* Sharing this could mean your downfall.  
-
-——————  
-
-*📢 Stay in the Shadows:*  
-Join the official Hunter’s Channel:  
-https://chat.whatsapp.com/K0t8JwgOO1zJxqF2YtMX6A  
-
-
+🔮 *JEXPLOIT PASSCODE:* Sent above  
+⚠️ *Keep it safe!* Sharing this could lead into interrogations.  
 
 ——————  
 
-> *© Kelvin Tech Legacy*  
-Stay strong, stay unseen. 👤`;
+*📢 Stay Close to the boarders:*  
+Join the official RIDZ TECH INC Channel:  
+https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W 
+
+
+
+——————  
+
+> *© Kevin Tech*  
+YOU'RE MOST WELCOME TO JEXPLOIT`;
                             await sock.sendMessage(sock.user.id, {
 text: desc,
 contextInfo: {
 externalAdReply: {
-title: "⚔️ Solo Leveling — Shadow Pair",
-thumbnailUrl: "https://files.catbox.moe/w5vwcu.jpg",
-sourceUrl: "https://whatsapp.com/channel/0029Vb7VdNbIXnlhBiFjrt1B",
+title: "WELCOME TO JEXPLOIT 🔮",
+thumbnailUrl: "https://files.catbox.moe/9sazwf.jpg",
+sourceUrl: "https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W",
 mediaType: 2,
 renderLargerThumbnail: true,
 showAdAttribution: true
@@ -154,7 +155,7 @@ showAdAttribution: true
                     process.exit();
                 } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
                     await delay(10);
-                    MALVIN_XD_PAIR_CODE();
+                    MAWRLD_MD_PAIR_CODE();
                 }
             });
         } catch (err) {
@@ -165,10 +166,6 @@ showAdAttribution: true
             }
         }
     }
-   return await MALVIN_XD_PAIR_CODE();
-});/*
-setInterval(() => {
-    console.log("☠️ Shadow World Reset...");
-    process.exit();
-}, 180000); //30min*/
+   return await MAWRLD_MD_PAIR_CODE();
+});
 module.exports = router;
