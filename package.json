@@ -9,9 +9,9 @@
      "restart": "pm2 restart prabath"
     },
   "dependencies": {
-    "@whiskeysockets/baileys": "npm:@rexxhayanasi/elaina-baileys",
+    "baileys": "npm:@rexxhayanasi/elaina-baileys",
     "qrcode": "^1.5.4",
-    "awesome-phonenumber": "^7.5.0",
+    "awesome-phonenumber": "^2.64.0",
     "pino": "^10.1.0",
     "phone" : "^3.1.67",
     "body-parser": "^2.2.0",
