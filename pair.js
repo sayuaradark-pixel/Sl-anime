@@ -1,171 +1,111 @@
-const { makeid } = require('./gen-id');
 const express = require('express');
 const fs = require('fs');
-let router = express.Router();
+const { exec } = require("child_process");
+let router = express.Router()
 const pino = require("pino");
-const { default: makeWASocket, useMultiFileAuthState, delay, Browsers, makeCacheableSignalKeyStore, getAggregateVotesInPollMessage, DisconnectReason, WA_DEFAULT_EPHEMERAL, jidNormalizedUser, proto, getDevice, generateWAMessageFromContent, fetchLatestBaileysVersion, makeInMemoryStore, getContentType, generateForwardMessageContent, downloadContentFromMessage, jidDecode } = require('baileys')
-
+const {
+    default: makeWASocket,
+    useMultiFileAuthState,
+    delay,
+    makeCacheableSignalKeyStore,
+    Browsers,
+    jidNormalizedUser
+} = require("@whiskeysockets/baileys");
 const { upload } = require('./mega');
+
 function removeFile(FilePath) {
     if (!fs.existsSync(FilePath)) return false;
     fs.rmSync(FilePath, { recursive: true, force: true });
 }
-router.get('/', async (req, res) => {
-    const id = makeid();
-    let num = req.query.number;
-    async function MAWRLD_MD_PAIR_CODE() {
-        const {
-            state,
-            saveCreds
-        } = await useMultiFileAuthState('./temp/' + id);
-        try {
-var items = ["Edge"];
-function selectRandomItem(array) {
-  var randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
-}
-var randomItem = selectRandomItem(items);
 
-            let sock = makeWASocket({
+router.get('/', async (req, res) => {
+    let num = req.query.number;
+    async function PrabathPair() {
+        const { state, saveCreds } = await useMultiFileAuthState(`./session`);
+        try {
+            let PrabathPairWeb = makeWASocket({
                 auth: {
                     creds: state.creds,
                     keys: makeCacheableSignalKeyStore(state.keys, pino({ level: "fatal" }).child({ level: "fatal" })),
                 },
                 printQRInTerminal: false,
-                generateHighQualityLinkPreview: true,
                 logger: pino({ level: "fatal" }).child({ level: "fatal" }),
-                syncFullHistory: false,
-                browser: Browsers.macOS(randomItem)
+                browser: Browsers.macOS("Safari"),
             });
-            if (!sock.authState.creds.registered) {
+
+            if (!PrabathPairWeb.authState.creds.registered) {
                 await delay(1500);
                 num = num.replace(/[^0-9]/g, '');
-                const code = await sock.requestPairingCode(num);
+                const code = await PrabathPairWeb.requestPairingCode(num);
                 if (!res.headersSent) {
                     await res.send({ code });
                 }
             }
-            sock.ev.on('creds.update', saveCreds);
-            sock.ev.on("connection.update", async (s) => {
 
-    const {
-                    connection,
-                    lastDisconnect
-                } = s;
-
-                if (connection == "open") {
-                    await delay(5000);
-                    let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
-                    let rf = __dirname + `/temp/${id}/creds.json`;
-                    function generateRandomText() {
-                        const prefix = "3EB";
-                        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                        let randomText = prefix;
-                        for (let i = prefix.length; i < 22; i++) {
-                            const randomIndex = Math.floor(Math.random() * characters.length);
-                            randomText += characters.charAt(randomIndex);
-                        }
-                        return randomText;
-                    }
-                    const randomText = generateRandomText();
+            PrabathPairWeb.ev.on('creds.update', saveCreds);
+            PrabathPairWeb.ev.on("connection.update", async (s) => {
+                const { connection, lastDisconnect } = s;
+                if (connection === "open") {
                     try {
+                        await delay(10000);
+                        const sessionPrabath = fs.readFileSync('./session/creds.json');
 
+                        const auth_path = './session/';
+                        const user_jid = jidNormalizedUser(PrabathPairWeb.user.id);
 
+                      function randomMegaId(length = 6, numberLength = 4) {
+                      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                      let result = '';
+                      for (let i = 0; i < length; i++) {
+                      result += characters.charAt(Math.floor(Math.random() * characters.length));
+                        }
+                       const number = Math.floor(Math.random() * Math.pow(10, numberLength));
+                        return `${result}${number}`;
+                        }
 
-                        const { upload } = require('./mega');
-                        const mega_url = await upload(fs.createReadStream(rf), `${sock.user.id}.json`);
+                        const mega_url = await upload(fs.createReadStream(auth_path + 'creds.json'), `${randomMegaId()}.json`);
+
                         const string_session = mega_url.replace('https://mega.nz/file/', '');
-                        let md = "jexploit~" + string_session;
-                        let code = await sock.sendMessage(sock.user.id, { text: md });
-                            let desc = 
-`*Arise Little Alien 👽!*   
 
-Your *Passcode to jexploit* has been forged successfully.  
+                        const sid = "𝐆𝐎𝐉𝐎-𝐌𝐃=" + string_session;
 
-🔮 *Jexploit PASSCODE:* Sent above  
-⚠️ *Keep it safe!* Sharing this could lead into interrogations.  
+                        const dt = await PrabathPairWeb.sendMessage(user_jid, {
+                            text: sid
+                        });
 
-——————  
+                                   await PrabathPairWeb.sendMessage(user_jid, {
+                            text: `*𝐆𝐎𝐉𝐎-𝐌𝐃  𝐒𝐄𝐒𝐒𝐈𝐎𝐍 𝐒𝐔𝐂𝐂𝐄𝐒𝐅𝐔𝐋𝐋👇*\n\n* *𝙷𝙸  👋.....*\n\n*⭕ Github Repo :*\n\n> ගිට් හබ් රෙපො\n\n*⭕ WHATSAPP CHANNEL :*\n\n> https://whatsapp.com/channel/0029VbB9tgf4NVih7bqzzf0s\n\n*⭕Contact Owner :*\n\n> wa.me/94743826406\n\n\n🚫 *𝗗𝗢𝗡𝗧 𝗦𝗛𝗔𝗥𝗘 𝗬𝗢𝗨𝗥 𝗦𝗘𝗦𝗦𝗜𝗢𝗡 𝗜𝗗* 🚫`
+                        });
 
-*📢 Stay Close to the boarders:*  
-Join the official Kelvin Tech INC Channel:  
-https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W 
-
-
-
-——————  
-
-> *© Kelvin Tech*  
-YOU'RE MOST WELCOME TO JEXPLOIT`;
-                        await sock.sendMessage(sock.user.id, {
-text: desc,
-contextInfo: {
-externalAdReply: {
-title: "WELCOME TO JEXPLOIT 🔮",
-thumbnailUrl: "https://files.catbox.moe/9sazwf.jpg",
-sourceUrl: "https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W",
-mediaType: 1,
-renderLargerThumbnail: true
-}  
-}
-},
-{quoted:code })
                     } catch (e) {
-                            let ddd = sock.sendMessage(sock.user.id, { text: e });
-                           let desc = 
-`*Arise Little Alien 👽!*   
-
-Your *Passcode to jexploit* has been forged successfully.  
-
-🔮 *JEXPLOIT PASSCODE:* Sent above  
-⚠️ *Keep it safe!* Sharing this could lead into interrogations.  
-
-——————  
-
-*📢 Stay Close to the boarders:*  
-Join the official RIDZ TECH INC Channel:  
-https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W 
-
-
-
-——————  
-
-> *© Kevin Tech*  
-YOU'RE MOST WELCOME TO JEXPLOIT`;
-                            await sock.sendMessage(sock.user.id, {
-text: desc,
-contextInfo: {
-externalAdReply: {
-title: "WELCOME TO JEXPLOIT 🔮",
-thumbnailUrl: "https://files.catbox.moe/9sazwf.jpg",
-sourceUrl: "https://whatsapp.com/channel/0029Vb6eR1r05MUgYul6Pc2W",
-mediaType: 2,
-renderLargerThumbnail: true,
-showAdAttribution: true
-}  
-}
-},
-{quoted:ddd })
+                        exec('pm2 restart prabath');
                     }
-                    await delay(10);
-                    await sock.ws.close();
-                    await removeFile('./temp/' + id);
-                    console.log(`👤 ${sock.user.id} 🖤 𝗔𝗿𝗶𝘀𝗲! Connected as Shadow ✅ Restarting process...`);
-                    await delay(10);
-                    process.exit();
-                } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode != 401) {
-                    await delay(10);
-                    MAWRLD_MD_PAIR_CODE();
+
+                    await delay(100);
+                    return await removeFile('./session');
+                    process.exit(0);
+                } else if (connection === "close" && lastDisconnect && lastDisconnect.error && lastDisconnect.error.output.statusCode !== 401) {
+                    await delay(10000);
+                    PrabathPair();
                 }
             });
         } catch (err) {
-            console.log("⚠️ Shadow realm collapsed — Restarting service...");
-            await removeFile('./temp/' + id);
+            exec('pm2 restart prabath-md');
+            console.log("service restarted");
+            PrabathPair();
+            await removeFile('./session');
             if (!res.headersSent) {
-                await res.send({ code: "❗ Shadow Gate Closed (Service Unavailable)" });
+                await res.send({ code: "Service Unavailable" });
             }
         }
     }
-   return await MAWRLD_MD_PAIR_CODE();
+    return await PrabathPair();
 });
+
+process.on('uncaughtException', function (err) {
+    console.log('Caught exception: ' + err);
+    exec('pm2 restart prabath');
+});
+
+
 module.exports = router;
